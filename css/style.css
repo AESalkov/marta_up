@@ -1,0 +1,641 @@
+
+/* ----------------------------------------------по умолчанию для всего сайта ------------------------------------*/
+* {
+    box-sizing: border-box;                           /* св-во работает для всех тегов, означает, */ 
+                                                      /* что padding'и не расширяют блоки, а работают внтри них */
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;       /* скопировали с сайта fonts.google.com */
+    font-size: 15px;                                  /* размер шрифта */     
+    line-height: 24px;                                /* высота строки */
+}
+
+a {
+    text-decoration: none;                            /* убрали подчеркивание со ссылок */
+    color: inherit;                                   /* наследовать цвет у родителя */
+}
+/* ---------------------------------------------------------------------------------------------------------------*/
+
+/* ----------------------------------------- верхушка header'е ---------------------------------------------------*/
+.header {
+    background-image: url(../images/header-bg.jpg);
+    min-height: 793px;                               /* опасно ставить просто height, может не хватить картинки для контента */    
+    background-repeat: no-repeat;                    /* чтобы фон не дублировался на экране на широких экранах */
+    background-size: cover;                          /* чтобы фоновая картинка растягивалась по экрану */
+    background-position: top center;                 /* центровка картинки - прижата к верху и по располагается по центру */
+}
+
+.container {
+    max-width: 1200px;                         /* чтобы не было нижнего скрола, нужно указывать именно max */
+    margin-left: auto;                         /* центровка контейнера слева исходя из max-height  альтернатива = margin: 0 auto; */
+    margin-right: auto;                        /* центровка контейнера справа исходя из max-height, в итоге он встает по центру */
+    padding-left: 15px;                        /* отступ слева, чтоб не прилипал к краям маленьких экранов */
+    padding-right: 15px;                       /* отступ справа такой же; 1200-15-15 = 1170 */
+}
+
+.header__top {
+    display: flex;                             /* элементы типа flex располагаются последовательно */
+    justify-content: space-between;            /* раскидат элементы равномерно по углам, см. шпаргалку по flexbox */
+    height: 100px;                             /* высота всего контенера 30top + 40menu + 30botton = 100 */
+    align-items: center;                       /* все элементы по центру этой ширины */
+}
+
+.menu__list {
+    display: flex;                             /* сделали menu-кнопки flex'ами и они расположились в строку */
+    list-style: none;
+}
+
+.menu__list li + li {
+    padding-left: 50px;                        /* задали отступ всем, кроме первого; '+' значит соседний элемент */
+}
+
+.menu__list a {
+    opacity: 0.5;                             /* прозрачность 50% по умолчанию */
+    color: #fff;                            /* цвет конкретно этих menu-кнопок-ссылок */
+    font-weight: 600;                         /* жирынй шрифт */
+    text-transform: uppercase;                /* всегда заглавные буквы */
+    transition: all .5s;                      /* замедление эффекта при наведении */
+}
+ 
+.menu__list a:hover {                         /* эффекты при наведении */
+    opacity: 1;                               /* прозрачность 100%, более насыщенный белый, нет прозрачности */
+}
+
+.login {                                      /* кнопка LOG IN */
+    margin-right: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.sign-up {
+    color: #250F8A;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #fff;                 /* фон кнопки */
+    padding: 8px 48px;                        /* отступ: сверху и снизу - 8; слева и справа - 48 */
+    border-radius: 20px;                      /* эффект скругления кнопки */
+}
+/* ---------------------------------------------------------------------------------------------------------------*/
+
+/* ----------------------------------------- слайдер в header'е --------------------------------------------------*/
+.header-slider {
+    padding-top: 111px;                       /* отступ от полосы меню */
+}
+
+.header-slider__item-content {                /* раскидали 2 элемента слайда (info и images) в стороны */
+    display: flex;       
+    justify-content: space-between;
+}
+
+.header-slider__item-info {                   /* родитель слайда */
+    max-width: 506px;                         /* максимальная ширина для универсальности */
+    color: #fff;                            /* цвет всего текста внутри родителя */
+}
+
+.header-slider__item-title {                  /* стили для заголовка слайда */
+    font-size: 45px;
+    line-height: 60px;
+    font-weight: 700;
+    margin-bottom: 10px;  
+}
+
+.header-slider__item-description {            /* стили для описания под заголовком */
+    font-size: 24px;
+    line-height: 55px;
+    margin-bottom: 60px;  
+}
+
+.header-slider__btn {                        /* стили для кнопки внутри слайдера */
+    font-weight: 600;
+    text-transform: uppercase;               /* заглавные буквы в кнопке */
+    color: #250F8A;
+    padding: 13px 39px;                      /* отступ внутри кнопки от её названия */
+    background-color: #FFCA00;             /* цвет кнопки */
+    border-radius: 25px;                     /* скругление кнопки */
+}
+
+.header-slider__item-images {
+    margin: 10px 82px 0 0;                   /* отступ сверху (10px), справа (82px), снизу (0), слева (0) */
+}
+
+.header__dots {
+    list-style: none;                        /* отключили точки и др.стили у dots'ов */
+    position: absolute;
+    right: 0;                                /* пришали dots'ы вправо */
+    top: 50%;                                /* подняли dots посреди слайда */
+    transform: translateY(-50%);
+}
+
+.header__dots button {                       /* стилизуем dots'ы */  
+    border: none;                            /* отключили рамки у dots'ов */
+    background-color: #fff;                /* белый цвет у dots'ов */
+    opacity: 0.5;                            /* прозрачность у dots'ов на 50%, чтобы тусклее были, когда не активны */
+    font-size: 0;                            /* отключили шрифты, чтоб не было цифр на dots'ах */
+    padding: 0;                              /* убрали отступы между dots'ами */
+    width: 7px;                              
+    height: 7px;                             
+    border-radius: 3.5px; 
+    cursor: pointer;                         /* курсор в виде "руки" */
+    outline: none;                           /* убрали синюю обводку у dots */
+    display: block;                          /* делаем элементы блочными */  
+    margin: 10px auto;                       /* расстояние между dots'эами: 10px - сверзу/снизу, auto - справа/слева (т.е. по центру) */
+}
+
+.header__dots .slick-active button {         /* для активного dots'а */
+    width: 15px;                             
+    opacity: 1;
+}
+/* ---------------------------------------------------------------------------------------------------------------*/
+
+/* -------------------------------------- Блок specialized -------------------------------------------------------*/
+.specialized {
+    padding: 55px 0 93px;                               /* отступ от верхнего заголовка блока вверх / отступ от самого большого итема вниз */
+    background-image: url(../images/special-bg.svg);    
+    background-position: left bottom;                   /* слева внизу */
+    background-repeat: no-repeat;                       /* чтоб не повторялся */
+    color: #202020;
+    text-align: center;
+}
+
+.specialized__title {                                   /* главный заголовок */
+    margin-bottom: 96px;
+}
+
+.title {   
+    font-size: 35px;
+    line-height: 45px;
+    font-weight: 700;
+}
+
+.specialized__items {
+    display: flex;
+    justify-content: space-between;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.specialized__item {
+    width: 280px;
+}
+
+.specialized__item-img {
+    margin-bottom: 23px;
+    min-height: 159px;
+    align-items: center;
+}
+
+.specialized__item-title {
+    margin-bottom: 11px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.specialized__item-text {
+    padding: 0 10px;                                   /* слева и справа по 10px */
+    color: #272727;
+    opacity: .7;
+}
+/* ---------------------------------------------------------------------------------------------------------------*/
+
+/* ------------------------------------------ блок Advantages ----------------------------------------------------*/
+.advantages {
+    padding-top: 64px;
+    background-color: #F4F9FD;
+    background-image: url(../images/advantages-bg.svg);
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+
+.advantages-box {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 76px;
+}
+
+.advantages-box--right .advantages-box__info {
+    order: 1;                                   /* поменяли местами картинку и текст в advantages № 2 */
+    background-image: url(../images/title-bg-2.svg);
+    background-repeat: no-repeat;
+    background-position: 22px 130px;            /* позиция голубого пятна - чистая подгонка */
+}
+
+.advantages-box__info {
+    max-width: 456px;
+    padding-top: 60px;
+    background-image: url(../images/title-bg-1.svg);
+    background-repeat: no-repeat;
+    background-position: 22px 76px;             /* позиция голубого пятна - чистая подгонка */
+}
+
+.advantages-box--bg {
+    background-image: url(../images/title-bg-3.svg);
+    background-repeat: no-repeat;
+    background-position: 5px 105px;            /* позиция голубого пятна - чистая подгонка */
+}
+
+.advantages-box__title {
+    color: #202020;
+    font-size: 35px;
+    line-height: 45px;
+    font-weight: bold;
+    padding: 68px 15px 0 48px;
+}
+
+.advantages-box__text {
+    padding-left: 48px;
+    color: #272727;
+}
+
+.advantages-box__text p {
+    margin: 12px 0;                             /* отступ для параграфов сверху и снизу, например, по 12px */
+}
+/* ---------------------------------------------------------------------------------------------------------------*/
+
+/* ------------------------------------------ блок Reviews -------------------------------------------------------*/
+.reviews {
+    background-image: url(../images/reviews-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    padding: 38px 0 82px;                       /* сверху сбоку снизу */
+}
+
+.reviews__title {
+    color: #fff; 
+    margin: 0 auto 48px;                        /* чтобы встал по центру */ 
+    max-width: 384px;
+    text-align: center;
+}
+
+.reviews__items {
+    max-width: 940px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reviews__item {
+    width: 300px;
+    border-radius: 5px;
+    background-color: rgba(255,255,255,.2);
+    padding: 35px 20px;
+    color: #fff; 
+}
+
+.reviews__item-head {
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.reviews__item-head img {
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.reviews__item-name {
+    font-weight: 600;
+}
+
+.reviews__item-position {
+    opacity: .5;
+}
+
+.reviews__item-text {
+    text-align: center;
+    padding-top: 39px;
+    position: relative;
+}
+
+.reviews__item-text::before {
+    content:"“";
+    font-size: 40px;
+    line-height: 55px;
+    font-weight: 700;
+    position: absolute;
+    top: 0;
+    right: 0;                   /* центровка */
+    left: 0;                    /* центровка */
+}
+/* ---------------------------------------------------------------------------------------------------------------*/
+
+/* ------------------------------------------------- Футер -------------------------------------------------------*/
+.footer__inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px 17px;
+    color: #272727;
+    padding: 0 40px;
+}
+
+.footer__link a + a {
+    margin-left: 20px;
+}
+/* ----------------------------------------------------------------------------------------------------------------*/
+
+/*----------------- для экранов > 570px (возврат строки меню) ------------------*/
+@media (min-width: 570px) { 
+    .specialized {
+        background-size: 80px;
+    }
+
+    .advantages {
+        background-size: 100px;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------- для экранов <= 1201px ---------------------------------------------------*/
+@media (max-width: 1201px) {              /* либо пишут max-width, либо min-width */
+    .specialized {
+        background-size: 60px;
+    }
+
+    .advantages {
+        background-image: none;
+    }
+/* ----------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------- для экранов <= 1190px ---------------------------------------------------*/
+@media (max-width: 1190px) {              /* либо пишут max-width, либо min-width */
+    .header-slider__item-images {
+        margin: 50px 20px 0 0;
+    }
+
+    .header-slider__item-images img {
+        width: 80%;
+    }
+
+    .header-slider__item-info {
+        padding: 50px 0;
+    }
+
+    .header-slider {
+        padding-top: 25px;
+    }
+
+    .advantages-box__images img {
+        width: 80%;
+    }
+
+    .advantages-box__images {
+        text-align: center;
+    }
+
+    .advantages-box {
+        justify-content: space-around;
+    }
+
+    .advantages-box--right .advantages-box__title {
+        padding: 30px 0 15px 20px;
+    }
+
+    .advantages-box--right .advantages-box__text {
+        padding-left: 20px;
+    }
+
+    .advantages-box--right .advantages-box__info {
+        padding-right: 30px;
+    }
+/* ---------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------- для экранов <= 1080px ---------------------------------------------------*/
+@media (max-width: 1080px) {              /* либо пишут max-width, либо min-width */
+    .specialized {
+       background-image: none;
+    }
+
+    .advantages-box__info {
+        padding-top: 10px;
+    }
+
+    .advantages-box__images img {
+        width: 70%;
+        margin-top: 40px;
+    }
+
+    .reviews__items {
+        flex-wrap: wrap;
+    }
+
+    .reviews__item {
+        width: 48%;
+        margin-bottom: 25px;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------- для экранов <= 924px ----------------------------------------------------*/
+@media (max-width: 924px) {
+    .header__top {
+        flex-wrap: wrap;
+    }
+
+    .header-btn {
+        width: 100%;
+        text-align: right;
+    }
+
+    .login {
+        margin: 30px;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------- для экранов <= 900px ----------------------------------------------------*/
+@media (max-width: 900px) {
+    .header-slider__item-images {
+        display: none;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------- для экранов <= 858px ----------------------------------------------------*/
+@media (max-width: 858px) {
+    .advantages-box__info {
+        max-width: 100%;
+    }
+
+    .advantages-box {
+        flex-wrap: wrap;
+        padding-bottom: 20px;
+    }
+
+    .advantages-box--right .advantages-box__info {
+        order: 0;
+    }
+    .advantages {
+        padding-top: 0;
+    }
+
+    .advantages-box__images img {
+        width: 100%;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------- для экранов <= 775px ----------------------------------------------------*/
+@media (max-width: 775px) {
+    .specialized {
+        padding: 20px 0 40px;
+        margin-bottom: 40px;
+    }
+    .specialized__items {
+        flex-wrap: wrap;
+    }
+
+    .specialized__item {
+        width: 50%;
+        margin-bottom: 20px;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------- для экранов <= 685px ----------------------------------------------------*/
+@media (max-width: 685px) {  
+    .reviews__items {
+        display: block;
+    }
+
+    .reviews__item {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+
+    .reviews {
+        padding: 38px 0;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------- для экранов <= 620px ----------------------------------------------------*/
+@media (max-width: 620px) {  
+    .footer__inner {
+        display: block;
+        text-align: center;
+        padding: 20px 40px 17px;
+    }
+    
+    .footer__link {
+        margin-bottom: 10px;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------- для экранов <= 570px ----------------------------------------------------*/
+@media (max-width: 571px) {   
+    .menu__list {                         /* позиционирвоание менб - где оно будет выезжать */
+        display: none;
+        list-style: none;
+        position: absolute;
+        top: 120px;
+        width: 100%;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        background-color: #1f50a8;
+        z-index: 5;                       /* чтобы меню раскрывалось над слайдером */
+    }
+    .menu ul {
+        padding: 0;
+    }
+
+    .menu__list li + li {
+        padding-left: 0;                  /* убрали отстпы слева у всех элементов списка меню*/
+    }
+
+    .menu__list a {                       /* отступы между кнопок меню */ 
+        display: block;
+        padding: 10px 0;
+    }
+
+    .menu__btn {
+        width: 30px;
+        height: 20px;
+        position: relative;
+    }
+
+    .menu__btn span {                      /* прорисовка меню в виде гамбургера */
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        top: 9px;
+        position: absolute;
+    }
+
+    .menu__btn::after,
+    .menu__btn::before {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background-color: #fff;    
+        position: absolute;
+    }
+
+    .menu__btn::after {
+        top: 0;
+    }
+
+    .menu__btn::before {
+        bottom: 0;
+    }                                      /* здесь прорисовка закончилась */
+
+    .header-slider__item-info {
+        padding: 10px 30px 10px 0;
+    }
+    .header {
+        min-height: 580px;
+    }
+
+    .header-slider__item-description {
+        margin-bottom: 20px;
+        font-size: 20px;
+        line-height: 35px;
+    }
+
+    .header-slider__item-title {
+        font-size: 35px;
+        line-height: 45px;
+    }
+
+    .specialized__items{
+        display: block; 
+    }
+
+    .specialized__item {
+        width: 100%;
+    }
+
+    .title {
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .advantages-box__title {
+        padding: 68px 0 15px 0;
+        line-height: 40px;
+        font-size: 30px;
+    }
+
+    .advantages-box__text {
+        padding-left: 0;
+    }
+
+    .advantages-box--right .advantages-box__title {
+        padding: 30px 0 15px 0;
+    }
+
+    .advantages-box--right .advantages-box__text {
+        padding-left: 0;
+    }
+}     
+/* ----------------------------------------------------------------------------------------------------------------*/
+
+/*---------------------------------- для экранов > 570px (возврат строки меню) -------------------------------------*/
+@media (min-width: 570px) { 
+    .menu__list {
+        display: flex !important;
+    }
+}
+/* ----------------------------------------------------------------------------------------------------------------*/
